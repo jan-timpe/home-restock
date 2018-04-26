@@ -84,13 +84,13 @@ def calculate_item_weights(shared, missing, new, prev_weight, curr_weight, item_
     needs_update = []
     if len(new) == 1 and len(missing) == 0:
         new_weight = curr_weight - prev_weight
-        if not new[0] in item_weights or if item_weights[new[0]] != new_weight:
+        if not new[0] in item_weights or item_weights[new[0]] != new_weight:
             needs_update.append(new[0])
         item_weights[new[0]] = new_weight
 
     elif len(new) == 0 and len(missing) == 1:
         missing_weight = prev_weight - curr_weight
-        if not missing[0] in item_weights or if item_weights[missing[0]] != missing_weight:
+        if not missing[0] in item_weights or item_weights[missing[0]] != missing_weight:
             needs_update.append(missing[0])
         item_weights[missing[0]] = missing_weight
 
