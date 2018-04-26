@@ -3,6 +3,21 @@ from hx711 import HX711
 from pyzbar.pyzbar import decode
 import RPi.GPIO as GPIO
 
+# consts
+
+POLL_RATE = 10 # seconds
+BUFFER_SIZE = 10 # records
+ITEM_REMOVED_TIME = 60 # seconds
+CAMERA_PORT = 0
+RAMP_FRAMES = 30 # throw out frames while camera focuses
+
+items = []
+weights = []
+images = []
+item_weights = []
+
+##
+
 
 # init weight sensors
 
@@ -21,8 +36,20 @@ hx.tare()
 
 ##
 
-def read_barcodes(img_path):
-    img = cv2.imread(img_path)
+# init camera
+
+camera = cv2.VideoCapture(CAMERA_PORT)
+
+##
+
+# functions
+
+def get_image():
+    retval, img = camera.read()
+    return img
+
+def read_barcodes(img):
+    # img = cv2.imread(img_path)
     barcodes = decode(img)
 
     items = []
@@ -97,31 +124,29 @@ def empty_items(items):
 
     return empty
 
-# run
-
-POLL_RATE = 10 # seconds
-BUFFER_SIZE = 10 # records
-ITEM_REMOVED_TIME = 60 # seconds
-
-items = []
-weights = []
-images = []
-item_weights = []
-
 ##
 
+# run
+
 if __name__ == '__main__':
+
+    for i in range(RAMP_FRAMES):
+        temp = get_image()
+
     while True:
         try:
             weight = hx.get_weight(5)
             hx.power_down()
             hx.power_up()
 
-            img_path = None
+            image = get_image()
 
             weights.append(weight)
             images.append(image)
-            items.append(read_barcodes(img_path))
+            items.append(read_barcodes(image))
+
+            print(weight)
+            print(images)
 
             if len(weights) > BUFFER_SIZE:
                 weights.pop(0)
@@ -156,3 +181,4 @@ if __name__ == '__main__':
             time.sleep(POLL_RATE)
         except (KeyboardInterrupt, SystemExit):
             clean_and_exit()
+            del(camera)
