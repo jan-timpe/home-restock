@@ -23,5 +23,7 @@ python test.py
 ## Members
 
 Emad Siddiqui
+
 Blake Reed
+
 Jan Timpe
