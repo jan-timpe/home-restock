@@ -1,6 +1,7 @@
 import cv2, requests, sys, time, zbar
 import RPi.GPIO as GPIO
 from PIL import Image
+from random import randint
 
 camera = cv2.VideoCapture(0)
 
@@ -9,6 +10,8 @@ scanner.parse_config('enable')
 
 items = []
 item_weights = {}
+item_original_weights = {}
+item_api_weights = {}
 
 
 def update_server_state(item, weight):
@@ -16,6 +19,10 @@ def update_server_state(item, weight):
     r = requests.post(url, data={
         'weight': weight
     })
+    if r.status_code == 200:
+        json = r.json()
+        item_api_weights[item] = json['weight']
+
 
 def update_empty_items_server_state(item):
     url = 'http://localhost:5000/update/' + str(item) + '/'
@@ -31,9 +38,9 @@ def get_updated_item_weight(item, weight):
     if not item in number_of_times_counted:
         number_of_times_counted[item] = 0
     elif number_of_times_counted[item] % 5 == 0:
-        new = weight - weight*.2
+        new = weight-(item_original_weights[item]*.2)
 
-        if new <= 0:
+        if item_api_weights[item]/new <= .05:
             new = 0
             update_empty_items_server_state(item)
 
@@ -67,7 +74,8 @@ if __name__ == '__main__':
             barcode = symbol.data
             if not barcode in items:
                 items.append(barcode)
-                item_weights[barcode] = 200
+                item_weights[barcode] = randint(20, 200)
+                item_original_weights[barcode] = item_weights[barcode]
                 update_server_state(barcode, item_weights[barcode])
             else:
                 new_weight = get_updated_item_weight(barcode, item_weights[barcode])

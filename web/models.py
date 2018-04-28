@@ -16,6 +16,10 @@ class Product(Model):
     reordered = BooleanField()
     size = CharField()
 
+    def get_parsed_weight(self):
+        parsed = int(self.size.replace(' oz', ''))
+        return parsed
+
     def to_dict(self):
         return {
             'name': self.name,
@@ -26,6 +30,7 @@ class Product(Model):
             'empty': self.empty,
             'reordered': self.reordered,
             'size': self.size,
+            'weight': self.get_parsed_weight()
             'history': [h.to_dict() for h in self.history.order_by(ProductHistory.timestamp.asc())]
         }
 
