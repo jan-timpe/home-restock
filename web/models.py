@@ -30,7 +30,7 @@ class Product(Model):
             'empty': self.empty,
             'reordered': self.reordered,
             'size': self.size,
-            'weight': self.get_parsed_weight()
+            'weight': self.get_parsed_weight(),
             'history': [h.to_dict() for h in self.history.order_by(ProductHistory.timestamp.asc())]
         }
 
