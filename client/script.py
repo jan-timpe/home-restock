@@ -142,7 +142,7 @@ if __name__ == '__main__':
             image = get_image()
 
             weights.append(weight)
-            images.append(image)
+            # images.append(image)
             items.append(read_barcodes(image))
 
             print(weight)
@@ -151,8 +151,8 @@ if __name__ == '__main__':
             if len(weights) > BUFFER_SIZE:
                 weights.pop(0)
 
-            if len(images) > BUFFER_SIZE:
-                images.pop(0)
+            # if len(images) > BUFFER_SIZE:
+            #     images.pop(0)
 
             if len(items) > BUFFER_SIZE:
                 empty = empty_items(items)
