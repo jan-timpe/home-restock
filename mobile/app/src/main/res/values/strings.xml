@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Food Spy Mobile</string>
+    <string name="weight">Current Weight</string>
+    <string name="action_settings">Settings</string>
+</resources>
