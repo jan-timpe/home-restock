@@ -1,6 +1,4 @@
-import cv2, requests, sys, time
-# from hx711 import HX711
-from pyzbar.pyzbar import decode
+import cv2, requests, sys, time, zbar
 import RPi.GPIO as GPIO
 
 
