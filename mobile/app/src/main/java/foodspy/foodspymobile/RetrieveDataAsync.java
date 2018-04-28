@@ -32,7 +32,7 @@ public class RetrieveDataAsync extends AsyncTask<String, Void, ArrayList<FoodIte
             @Override
             public void run() {
                 AsyncHttpClient client = new AsyncHttpClient();
-                client.get("http://10.0.2.2:5000/products", new AsyncHttpResponseHandler() {
+                client.get("http://192.168.0.18/products", new AsyncHttpResponseHandler() {
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                         try {

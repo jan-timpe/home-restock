@@ -39,7 +39,7 @@ def get_product(upc):
             upc = upc,
             url = data['productUrl'] or None,
             add_to_cart_url = data['addToCartUrl'] or None,
-            size = data['attributes']['size'] or None,
+            size = data['attributes']['size'] if 'size' in data['attributes'] else None,
             empty = False,
             reordered = False
         )
