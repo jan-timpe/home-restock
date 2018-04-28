@@ -14,6 +14,7 @@ class Product(Model):
     created = DateTimeField(default=datetime.datetime.now)
     empty = BooleanField()
     reordered = BooleanField()
+    size = CharField()
 
     def to_dict(self):
         return {
@@ -24,6 +25,7 @@ class Product(Model):
             'created': self.created,
             'empty': self.empty,
             'reordered': self.reordered,
+            'size': self.size,
             'history': [h.to_dict() for h in self.history.order_by(ProductHistory.timestamp.asc())]
         }
 

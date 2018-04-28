@@ -35,10 +35,11 @@ def get_product(upc):
             return None
 
         product = Product(
-            name = data['name'],
+            name = data['name'] or NotImplementedError,
             upc = upc,
-            url = data['productUrl'],
-            add_to_cart_url = data['addToCartUrl'],
+            url = data['productUrl'] or None,
+            add_to_cart_url = data['addToCartUrl'] or None,
+            size = data['attributes']['size'] or None,
             empty = False,
             reordered = False
         )

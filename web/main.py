@@ -5,7 +5,7 @@ from models import db, Product, ProductHistory
 app = Flask(__name__)
 
 db.connect()
-# db.drop_tables([Product, ProductHistory])
+db.drop_tables([Product, ProductHistory])
 db.create_tables([Product, ProductHistory])
 
 @app.route('/')
