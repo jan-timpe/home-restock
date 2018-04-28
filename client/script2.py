@@ -2,31 +2,28 @@ import cv2, requests, sys, time, zbar
 import RPi.GPIO as GPIO
 
 
+camera = cv2.VideoCapture(0)
 
-
-def get_image():
-    retval, img = camera.read()
-    return img
-
-
-def read_barcodes(img):
-    # img = cv2.imread(img_path)
-    barcodes = decode(img)
-
-    items = []
-    for code in barcodes:
-        # append upc code
-        items.append(code.data.decode()[1:])
-    
-    return items
-
-
+scanner = zbar.ImageScanner()
+scanner.parse_config('enable')
 
 if __name__ == '__main__':
     while True:
-        img = get_image()
-        codes = read_barcodes(img)
+        (grabbed, frame) = camera.read()
+        
+        # raw detection code
+        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY, dstCn=0)
+        pil = Image.fromarray(gray)
+        width, height = pil.size
+        raw = pil.tobytes()
 
-        print(codes)
+        # create a reader
+        image = zbar.Image(width, height, 'Y800', raw)
+        scanner.scan(image)
+
+        # extract results
+        for symbol in image:
+            # do something useful with results
+            print 'decoded', symbol.type, 'symbol', '"%s"' % symbol.data
 
         time.sleep(1)
