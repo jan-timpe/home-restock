@@ -30,7 +30,7 @@ number_of_times_counted = {}
 def get_updated_item_weight(item, weight):
     if not item in number_of_times_counted:
         number_of_times_counted[item] = 0
-    else if number_of_times_counted[item] % 5 == 0:
+    elif number_of_times_counted[item] % 5 == 0:
         new = weight - weight*.2
 
         if new <= 0:
