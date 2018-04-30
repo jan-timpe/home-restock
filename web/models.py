@@ -40,7 +40,7 @@ class ProductHistory(Model):
         database = db
     
     product = ForeignKeyField(Product, backref='history')
-    weight = DecimalField()
+    weight = FloatField()
     timestamp = DateTimeField(default=datetime.datetime.now)
 
     def to_dict(self):

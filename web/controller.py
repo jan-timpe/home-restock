@@ -1,7 +1,7 @@
 import datetime, requests
 from models import db, Product, ProductHistory
 
-api_key = 'replace-me'
+api_key = 'zhx2xbk543vanhndcy3bk4y7'
 api_url = 'http://api.walmartlabs.com/v1'
 
 def fetch_existing_product(upc):

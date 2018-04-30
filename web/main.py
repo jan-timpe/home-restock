@@ -42,7 +42,7 @@ def update(upc):
     product = controller.get_product(upc)
 
     if product:
-        if weight:
+        if weight and not product.empty:
             history = ProductHistory(
                 product = product,
                 weight = weight
