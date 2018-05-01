@@ -1,10 +1,10 @@
-import cv2, requests, numpy, sys, time, zbar
+import cv2, requests, sys, time, zbar
 # import RPi.GPIO as GPIO
 from PIL import Image
 from random import randint
 
 camera = cv2.VideoCapture(0)
-scanner = zbar.Scanner()
+scanner = zbar.ImageScanner()
 scanner.parse_config('enable')
 
 items = {}
