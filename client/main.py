@@ -65,18 +65,16 @@ if __name__ == '__main__':
         # raw detection code
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY, dstCn=0)
         pil = Image.fromarray(gray)
-        img = numpy.asarray(pil)
-        # width, height = pil.size
-        # raw = pil.tobytes()
+        width, height = pil.size
+        raw = pil.tobytes()
 
         # create a reader
-        # image = zbar.Image(width, height, 'Y800', raw)
-        # x, y, z = frame.shape()
-        results = scanner.scan(img)
+        image = zbar.Image(width, height, 'Y800', raw)
+        scanner.scan(image)
 
         # extract results
 
-        for symbol in results:
+        for symbol in image:
             # do something useful with results
             barcode = symbol.data.decode('ascii')
             print(barcode)
