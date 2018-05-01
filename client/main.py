@@ -5,7 +5,7 @@ from random import randint
 
 camera = cv2.VideoCapture(0)
 scanner = zbar.Scanner()
-# scanner.parse_config('enable')
+scanner.parse_config('enable')
 
 items = {}
 item_weights = {}
