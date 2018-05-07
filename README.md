@@ -6,7 +6,7 @@ The project has 3 components, a Flask webserver, a Python client-script, and an 
 
 ## Create a virtualenv and install requirements
 
-Both the client and server are meant to be run on a Raspberry Pi. Open CV needs to be manually downloaded and compiled to be compatible with an ARM architecture (huge pain), thus the client script does not use a `virtualenv`. A `virtualenv` is optional for the Flask app as well. If you opt not to use a `virtualenv`, be sure to install requirements before running the server.
+Both the client and server are meant to be run on a Raspberry Pi with a USB webcam connected (to any port). Open CV needs to be [manually downloaded and compiled](https://www.pyimagesearch.com/2017/09/04/raspbian-stretch-install-opencv-3-python-on-your-raspberry-pi/) to be compatible with an ARM architecture (huge pain), thus the client script does not use a `virtualenv`. A `virtualenv` is optional for the Flask app as well. If you opt not to use a `virtualenv`, be sure to install requirements before running the server.
 
 ```bash
 virtualenv venv -p python3
