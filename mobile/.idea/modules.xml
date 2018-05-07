@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/FoodSpyMobile.iml" filepath="$PROJECT_DIR$/FoodSpyMobile.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GraphView-master/GraphView-master.iml" filepath="$PROJECT_DIR$/GraphView-master/GraphView-master.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/mobile.iml" filepath="$PROJECT_DIR$/mobile.iml" />
     </modules>
   </component>
 </project>

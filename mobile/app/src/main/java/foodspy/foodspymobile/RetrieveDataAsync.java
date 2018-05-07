@@ -5,7 +5,9 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Looper;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.loopj.android.http.AsyncHttpClient;
@@ -32,7 +34,7 @@ public class RetrieveDataAsync extends AsyncTask<String, Void, ArrayList<FoodIte
             @Override
             public void run() {
                 AsyncHttpClient client = new AsyncHttpClient();
-                client.get("http://192.168.0.18/products", new AsyncHttpResponseHandler() {
+                client.get("http://192.168.0.22:5000/products/", new AsyncHttpResponseHandler() {
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                         try {
@@ -56,6 +58,7 @@ public class RetrieveDataAsync extends AsyncTask<String, Void, ArrayList<FoodIte
                             }
                             ListViewAdapter adapter = new ListViewAdapter(mActivity, foodItems);
                             ListView listView = (ListView) mActivity.findViewById(R.id.list_view);
+
                             listView.setAdapter(adapter);
 
                         } catch (JSONException e) {
@@ -68,7 +71,6 @@ public class RetrieveDataAsync extends AsyncTask<String, Void, ArrayList<FoodIte
                         error.printStackTrace();
                     }
                 });
-                String bleh = "";
             }
         };
         mainHandler.post(myRunnable);
