@@ -1,4 +1,4 @@
-# food-spy
+# Home Re:Stock
 
 Project for Wearable and Ubiquitous Computing at the University of Arkansas. 
 
