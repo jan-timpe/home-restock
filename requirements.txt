@@ -12,6 +12,6 @@ peewee==3.2.5
 Pillow==5.1.0
 pyzbar==0.1.5
 requests==2.18.4
-urllib3==1.22
+urllib3==1.26.5
 Werkzeug==0.14.1
 zbar-py==1.0.4
