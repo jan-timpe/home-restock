@@ -7,7 +7,7 @@ itsdangerous==0.24
 Jinja2==2.10
 MarkupSafe==1.0
 numpy==1.14.2
-opencv-python==3.4.0.12
+opencv-python==4.2.0.32
 peewee==3.2.5
 Pillow==5.1.0
 pyzbar==0.1.5
