@@ -6,7 +6,7 @@ idna==2.6
 itsdangerous==0.24
 Jinja2==2.10
 MarkupSafe==1.0
-numpy==1.14.2
+numpy==1.22.0
 opencv-python==3.4.0.12
 peewee==3.2.5
 Pillow==5.1.0
